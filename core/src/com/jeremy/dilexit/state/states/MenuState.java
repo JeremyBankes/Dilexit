@@ -3,6 +3,7 @@ package com.jeremy.dilexit.state.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -21,6 +22,8 @@ public class MenuState extends State {
 
 	private Viewport viewport;
 
+	private SpriteBatch batch;
+
 	private String title;
 	private BitmapFont normalFont;
 	private BitmapFont fancyFont;
@@ -35,6 +38,7 @@ public class MenuState extends State {
 
 	public MenuState() {
 		assetManager = Dilexit.getInstance().getAssetManager();
+		batch = new SpriteBatch();
 	}
 
 	@Override
@@ -48,19 +52,20 @@ public class MenuState extends State {
 
 	@Override
 	public void update(float deltaTime) {
-		final Dilexit game = Dilexit.getInstance();
-		final SpriteBatch batch = game.getBatch();
-
+		batch.begin();
 		if (!selected) {
 			if (Gdx.input.isKeyJustPressed(Keys.UP) || Gdx.input.isKeyJustPressed(Keys.W)) {
 				if (highlighted > 0) highlighted--;
 				bobble = 1.0f;
+				assetManager.get("sounds/shift.wav", Sound.class).play();
 			} else if (Gdx.input.isKeyJustPressed(Keys.DOWN) || Gdx.input.isKeyJustPressed(Keys.S)) {
 				if (highlighted < menu.length - 1) highlighted++;
 				bobble = 1.0f;
+				assetManager.get("sounds/shift.wav", Sound.class).play();
 			}
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.SPACE) || Gdx.input.isKeyJustPressed(Keys.ENTER)) {
+//			assetManager.get("sounds/select.wav", Sound.class).play();
 			selected = true;
 		}
 
@@ -122,6 +127,7 @@ public class MenuState extends State {
 				selected = false;
 			}
 		}
+		batch.end();
 	}
 
 	@Override

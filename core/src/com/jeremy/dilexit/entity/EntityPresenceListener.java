@@ -3,6 +3,8 @@ package com.jeremy.dilexit.entity;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntityListener;
 import com.badlogic.gdx.physics.box2d.World;
+import com.jeremy.dilexit.entity.components.PhysicsComponent;
+import com.jeremy.dilexit.entity.components.TypeComponent;
 
 public class EntityPresenceListener implements EntityListener {
 

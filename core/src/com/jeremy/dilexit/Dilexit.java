@@ -4,7 +4,6 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.jeremy.dilexit.state.StateManager;
 import com.jeremy.dilexit.state.states.GameState;
@@ -17,7 +16,6 @@ public class Dilexit extends ApplicationAdapter {
 	public static final int WIDTH = 512;
 	public static final int HEIGHT = WIDTH * 9 / 16;
 
-	private SpriteBatch batch;
 	private StateManager stateManager;
 	private AssetManager assetManager;
 
@@ -26,7 +24,6 @@ public class Dilexit extends ApplicationAdapter {
 	@Override
 	public void create() {
 		startTime = TimeUtils.millis();
-		batch = new SpriteBatch();
 
 		stateManager = new StateManager();
 		assetManager = new AssetManager();
@@ -43,25 +40,18 @@ public class Dilexit extends ApplicationAdapter {
 	public void render() {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		getBatch().begin();
 		stateManager.getCurrentState().update(Gdx.graphics.getDeltaTime());
-		getBatch().end();
 	}
 
 	@Override
 	public void dispose() {
 		stateManager.dispose();
 		assetManager.dispose();
-		batch.dispose();
 	}
 
 	@Override
 	public void resize(int width, int height) {
 		stateManager.getCurrentState().onResize(width, height);
-	}
-
-	public SpriteBatch getBatch() {
-		return batch;
 	}
 
 	public AssetManager getAssetManager() {

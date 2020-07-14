@@ -1,4 +1,4 @@
-package com.jeremy.dilexit.entity;
+package com.jeremy.dilexit.entity.systems;
 
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.graphics.Camera;
@@ -13,13 +13,13 @@ public class DebugRenderingSystem extends EntitySystem {
 
 	public DebugRenderingSystem(World world, Camera camera) {
 		renderer = new Box2DDebugRenderer();
+		renderer.setDrawVelocities(true);
 		this.world = world;
 		this.camera = camera;
 	}
 
 	@Override
 	public void update(float deltaTime) {
-		super.update(deltaTime);
 		renderer.render(world, camera.combined);
 	}
 

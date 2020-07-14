@@ -1,6 +1,7 @@
-package com.jeremy.dilexit.entity;
+package com.jeremy.dilexit.entity.components;
 
 import com.badlogic.ashley.core.Component;
+import com.jeremy.dilexit.entity.EntityType;
 
 public class TypeComponent implements Component {
 
