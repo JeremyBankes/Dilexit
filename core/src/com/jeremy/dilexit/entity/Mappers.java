@@ -1,18 +1,23 @@
 package com.jeremy.dilexit.entity;
 
 import com.badlogic.ashley.core.ComponentMapper;
-import com.jeremy.dilexit.entity.components.AnimationComponent;
-import com.jeremy.dilexit.entity.components.PhysicsComponent;
-import com.jeremy.dilexit.entity.components.PlayerComponent;
-import com.jeremy.dilexit.entity.components.TransformComponent;
-import com.jeremy.dilexit.entity.components.TypeComponent;
+import com.jeremy.dilexit.entity.components.ClickComponent;
+import com.jeremy.dilexit.entity.components.HoverComponent;
+import com.jeremy.dilexit.entity.components.PositionComponent;
+import com.jeremy.dilexit.entity.components.SizeComponent;
+import com.jeremy.dilexit.entity.components.TextureComponent;
+import com.jeremy.dilexit.entity.components.TextureRegionComponent;
 
 public class Mappers {
 
-	public static final ComponentMapper<TypeComponent> TYPE = ComponentMapper.getFor(TypeComponent.class);
-	public static final ComponentMapper<PhysicsComponent> PHYSICS = ComponentMapper.getFor(PhysicsComponent.class);
-	public static final ComponentMapper<TransformComponent> TRANFORM = ComponentMapper.getFor(TransformComponent.class);
-	public static final ComponentMapper<PlayerComponent> PLAYER = ComponentMapper.getFor(PlayerComponent.class);
-	public static final ComponentMapper<AnimationComponent> ANIMATION = ComponentMapper.getFor(AnimationComponent.class);
+	public static final ComponentMapper<ClickComponent> CLICK = ComponentMapper.getFor(ClickComponent.class);
+	public static final ComponentMapper<HoverComponent> HOVER = ComponentMapper.getFor(HoverComponent.class);
+	public static final ComponentMapper<PositionComponent> POSITION = ComponentMapper.getFor(PositionComponent.class);
+	public static final ComponentMapper<SizeComponent> SIZE = ComponentMapper.getFor(SizeComponent.class);
+	public static final ComponentMapper<TextureComponent> TEXTURE = ComponentMapper.getFor(TextureComponent.class);
+	public static final ComponentMapper<TextureRegionComponent> TEXTURE_REGION = ComponentMapper.getFor(TextureRegionComponent.class);
+//	public static final ComponentMapper< >     = ComponentMapper.getFor(   .class);
+//	public static final ComponentMapper< >     = ComponentMapper.getFor(   .class);
+//	public static final ComponentMapper< >     = ComponentMapper.getFor(   .class);
 
 }

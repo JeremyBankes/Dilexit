@@ -1,46 +1,44 @@
 package com.jeremy.dilexit.state;
 
-import java.util.Collection;
 import java.util.HashMap;
 
 import com.badlogic.gdx.Gdx;
 
 public class StateManager {
 
-	private State currentState;
 	private HashMap<Class<? extends State>, State> states = new HashMap<>();
 
-	public State getCurrentState() {
-		return currentState;
-	}
+	private State currentState;
 
-	void setCurrentState(State currentState) {
-		this.currentState = currentState;
+	public void update(float deltaTime) {
+		if (currentState == null) return;
+		currentState.update(deltaTime);
 	}
 
 	public void register(State state) {
 		states.put(state.getClass(), state);
-		state.create();
 	}
 
 	public <T extends State> T getState(Class<T> stateClass) {
+		if (!states.containsKey(stateClass)) throw new IllegalArgumentException("state not registered");
 		return stateClass.cast(states.get(stateClass));
 	}
 
-	public void enter(Class<? extends State> stateClass) {
-		if (getCurrentState() != null) getCurrentState().exit();
+	public State enterState(Class<? extends State> stateClass) {
+		if (currentState != null) currentState.exit();
 		State state = getState(stateClass);
-		setCurrentState(state);
 		state.enter();
 		state.onResize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-	}
-
-	public Collection<State> getStates() {
-		return states.values();
+		return state;
 	}
 
 	public void dispose() {
-		getCurrentState().exit();
+		if (currentState != null) currentState.exit();
+		states.values().forEach(State::dispose);
+	}
+
+	public void onResize(int width, int height) {
+		if (currentState != null) currentState.onResize(width, height);
 	}
 
 }

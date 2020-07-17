@@ -1,17 +1,21 @@
 package com.jeremy.dilexit.state;
 
-public abstract class State {
+import com.jeremy.dilexit.Dilexit;
 
-	public void create() {};
+public class State {
 
-	protected abstract void enter();
+	protected void enter() {}
 
-	public abstract void update(float deltaTime);
+	protected void update(float deltaTime) {}
 
-	protected abstract void exit();
+	protected void onResize(int width, int height) {}
 
-	public void dispose() {};
+	protected void dispose() {}
 
-	public void onResize(int width, int height) {}
+	protected void exit() {}
+
+	public Dilexit getGame() {
+		return Dilexit.getInstance();
+	}
 
 }
