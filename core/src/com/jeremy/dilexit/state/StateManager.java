@@ -26,10 +26,10 @@ public class StateManager {
 
 	public State enterState(Class<? extends State> stateClass) {
 		if (currentState != null) currentState.exit();
-		State state = getState(stateClass);
-		state.enter();
-		state.onResize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		return state;
+		currentState = getState(stateClass);
+		currentState.enter();
+		currentState.onResize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		return currentState;
 	}
 
 	public void dispose() {
